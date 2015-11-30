@@ -1,4 +1,0 @@
-C:\Users\toni.iltanen\Documents\GitHubVisualStudio\ASTE-Prototype\src\C-Sharp\ASTE.Resources\bin\Release\ASTE.Resources.dll
-C:\Users\toni.iltanen\Documents\GitHubVisualStudio\ASTE-Prototype\src\C-Sharp\ASTE.Resources\bin\Release\ASTE.Resources.pdb
-C:\Users\toni.iltanen\Documents\GitHubVisualStudio\ASTE-Prototype\src\C-Sharp\ASTE.Resources\obj\Release\ASTE.Resources.dll
-C:\Users\toni.iltanen\Documents\GitHubVisualStudio\ASTE-Prototype\src\C-Sharp\ASTE.Resources\obj\Release\ASTE.Resources.pdb

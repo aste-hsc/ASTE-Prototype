@@ -101,7 +101,9 @@ Installation:
 		ASTE.Demos.Mielenterveysseura/Views/Home/Index.cshtml, in line number 87
 		    url: "http://localhost:[Your port]/public/1.0/Get",
     
-	Step 8: Navigate to the demo web application by adding /lapset-puheeksi/lokikirja to your ASTE.Demos.Mielenterveysseura site on iis, ex: http://localhost:55708/lapset-puheeksi/lokikirja
+	Step 8: Navigate to the demo web application by adding /lapset-puheeksi/lokikirja to your ASTE.Demos.Mielenterveysseura site on iis:
+	
+	example http://localhost:55708/lapset-puheeksi/lokikirja
 
 
 

@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASTE.Modules.FormModule", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASTE.Public.REST", "ASTE.Public.Rest\ASTE.Public.REST.csproj", "{5F24BBC4-94EE-437E-B396-364A3C7D4C7F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASTE.Processes.Mielenterveysseura", "Aste.Processes.Mielenterveysseura\ASTE.Processes.Mielenterveysseura.csproj", "{B2449384-AC9C-44AC-86D0-903FAEB9FE7C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASTE.Processes.Mielenterveysseura", "ASTE.Processes.Mielenterveysseura\ASTE.Processes.Mielenterveysseura.csproj", "{B2449384-AC9C-44AC-86D0-903FAEB9FE7C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASTE.Resources", "ASTE.Resources\ASTE.Resources.csproj", "{6DA0AD47-A72F-429C-976B-CBC1B9772F8C}"
 EndProject

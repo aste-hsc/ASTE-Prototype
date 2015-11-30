@@ -1,0 +1,128 @@
+﻿
+<div class="text-center">
+    <h1>Keskustelu lapsesta, perheestä ja varhaiskasvatuksen ympäristöstä</h1>
+</div>
+<ul class="nav nav-tabs marginTop40">
+    <li role="presentation" class="active"><a href="#">Lapsen vanhempi</a></li>
+    <li role="presentation"><a href="#">Opettaja</a></li>
+    <li role="presentation"><a href="#">Lastenpsykiatri</a></li>
+    <li role="presentation"><a href="#">Lastensuojelu</a></li>
+</ul>
+<div class="well marginTop20 marginBottom40" style="background-color: #FFF8CA; background-image: none; border-color: #E0C900;">Täytä alla olevat kysymykset ja paina 'Tallenna'.</div>
+
+    <form class="ajaxform">
+        <div id="ajax_content">
+
+        </div>
+    </form>
+
+
+<div class="splash" style="position:absolute;top:0;bottom:0;left:0;right:0;display:none;">
+    <div style="width:100%;height:100%;background-color:rgba(128,128,128,0.5)">
+        <p style="z-index:99999;background-color:white;text-align:center; width:300px;border-radius:5px;border:3px solid #808080;padding:50px;font-weight:bold;top:50%;left:40%;position:fixed;">Odota hetki</p>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $(".splash").show();
+            var json_data = {
+                "process" : "Mielenterveysseura",
+                "method"  : "lokikirjaKysymykset",
+                "version" : "1.0"
+            };
+
+            $.ajax({
+                dataType: "json",
+                data: { "json": JSON.stringify(json_data) },
+                url: "http://localhost:53060/public/1.0/Get",
+                success: function (data) {
+
+                    obj = JSON.parse(data);
+                    var message = "";
+                    var index = 0;
+                    $(obj).each(function () {
+                        $("#ajax_content").append("<div class='col-xs-12 col-sm-6' style='font-weight:bold;' >" + this.question + "</div>");
+                        $("#ajax_content").append("<div class='col-xs-12 col-sm-6'>");
+                        $("#ajax_content").append("<input type='hidden' name='answers[" + index + "].form_id' value='0' />");
+                        $("#ajax_content").append("<input type='hidden' name='answers[" + index + "].id' value='0' />");
+                        $("#ajax_content").append("<input type='hidden' name='answers[" + index + "].form_question_metadata_id' value='" + this.id + "' />");
+                        $("#ajax_content").append("<textarea class='col-xs-12 col-sm-6' placeholder='syötä tekstiä...' rows='5' name='answers[" + index + "].value' />");
+                        $("#ajax_content").append("</div>");
+                        index = index +1;
+                    });
+
+                    $("#ajax_content").append("<div class='row'><div class='col-sm-6 col-sm-offset-3'><input type='submit' class='save btn btn-lg btn-primary col-xs-12' style='margin-top:40px;margin-bottom:40px;' value='Tallenna'  /></div></div>");
+                    $(".save").click(function () {
+
+                        $(".splash").show();
+                        
+                        var form_data = $(".ajaxform").serializeArray();
+                        var json_send = { 
+                            "process": "Mielenterveysseura",
+                            "method": "tallennaLokikirja",
+                            "version": "1.0",
+                            "parameters": form_data
+                        };
+                        var send_data = JSON.stringify(json_send);
+                        $.ajax({
+                            dataType: 'json',
+                            contentType: 'application/json',
+                            type: 'POST',
+                            data: send_data,
+                            url: "http://localhost:53060/public/1.0/Post",
+                            success: function (data) {
+                                obj = JSON.parse(data);
+                                var id = obj.form_id;
+                                var json_get = { 
+                                    "process": "Mielenterveysseura",
+                                    "method": "haeLokikirja",
+                                    "version": "1.0",
+                                    "parameters": { "form_id" : id  }
+                                };
+                                
+                                $.ajax({
+                                    dataType: "json",
+                                    data: { "json": JSON.stringify(json_get) },
+                                    url: "http://localhost:53060/public/1.0/Get",
+                                    success: function (data) {
+                                        $("#ajax_content").empty();
+                                        obj = JSON.parse(data);
+                                        $("#ajax_content").append("<div class='well marginTop20 marginBottom40' style='background-color: #FFF8CA; background-image: none; border-color: #E0C900;'>Tallentamasi vastaukset:</div>");
+                                        $(obj.answers).each(function () {
+                                            $("#ajax_content").append("<div class='row' style='padding-top:20px;padding-bottom:20px;'>");
+                                            $("#ajax_content").append("<div class='col-sm-6 col-xs-12 col-md-5 col-lg-6' style='font-weight:bold;' >" + this.form_question_metadata.question + "</div>");
+                                            $("#ajax_content").append("<div class='col-sm-6 col-xs-12 col-md-5 col-lg-6'>");
+                                            $("#ajax_content").append("<p>" + this.value + "</p>");
+                                            $("#ajax_content").append("</div>");
+                                            $("#ajax_content").append("</div'>");
+                                        });
+                                        $(".splash").hide();
+                                    },
+                                    error: function (data) {
+                                        $(".splash").hide();
+                                        alert(data.responseText);
+                                    }
+                                });
+                            },
+                            error: function (data) {
+                                $(".splash").hide();
+                                alert(data.responseText);
+                            }
+                        });
+                    });
+                    $(".splash").hide();
+                },
+                error: function(data)
+                {
+                    $(".splash").hide();
+                    alert(data.responseText);
+                }
+            });
+
+            $('.ajaxform').on('submit', function(e) {
+                e.preventDefault();
+            });
+
+        });
+</script>

@@ -6,11 +6,14 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>c:\temp\ASTE</_PublishTargetUrl>
+    <_PublishTargetUrl>c:\temp\ASTE\ASTE.Demos.Mielenterveysseura</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/Antlr3.Runtime.dll">
       <publishTime>09/11/2015 16:32:42</publishTime>
+    </File>
+    <File Include="bin/ASTE.Demos.Mielenterveysseura.dll">
+      <publishTime>11/30/2015 20:58:45</publishTime>
     </File>
     <File Include="bin/ASTE.dll">
       <publishTime>09/14/2015 12:21:51</publishTime>
@@ -160,7 +163,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/11/2015 16:33:54</publishTime>
     </File>
     <File Include="Global.asax">
-      <publishTime>09/11/2015 16:32:36</publishTime>
+      <publishTime>11/19/2015 22:59:51</publishTime>
     </File>
     <File Include="packages.config">
       <publishTime>09/12/2015 11:23:40</publishTime>
@@ -202,7 +205,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/11/2015 16:32:42</publishTime>
     </File>
     <File Include="Scripts/_references.js">
-      <publishTime>09/11/2015 16:34:11</publishTime>
+      <publishTime>09/21/2015 01:18:36</publishTime>
     </File>
     <File Include="Views/Account/ConfirmEmail.cshtml">
       <publishTime>09/11/2015 16:32:43</publishTime>
@@ -250,7 +253,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/11/2015 16:32:43</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>09/12/2015 14:29:46</publishTime>
+      <publishTime>11/30/2015 17:14:03</publishTime>
     </File>
     <File Include="Views/Home/Show.cshtml">
       <publishTime>09/12/2015 14:29:46</publishTime>
@@ -280,7 +283,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/11/2015 16:32:43</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>09/14/2015 12:53:32</publishTime>
+      <publishTime>11/30/2015 17:34:51</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>09/11/2015 16:32:43</publishTime>
@@ -292,7 +295,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/11/2015 16:32:36</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>09/12/2015 15:45:29</publishTime>
+      <publishTime>11/30/2015 20:58:46</publishTime>
     </File>
   </ItemGroup>
 </Project>

@@ -1,0 +1,16 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/src/C-Sharp/ASTE.Demos.Mielenterveysseura/bin
+/src/C-Sharp/ASTE.Modules.APIDiscovery/bin
+/src/C-Sharp/ASTE.Demos.Mielenterveysseura/obj/Debug
+/src/C-Sharp/ASTE.Modules.APIDiscovery/obj/Debug
+/src/C-Sharp/ASTE.Modules.FormModule/bin
+/src/C-Sharp/ASTE.Modules.FormModule/obj/Debug
+/src/C-Sharp/ASTE.Processes.Mielenterveysseura/bin
+/src/C-Sharp/ASTE.Processes.Mielenterveysseura/obj/Debug
+/src/C-Sharp/ASTE.Public.Rest/bin
+/src/C-Sharp/ASTE.Public.Rest/obj/Debug
+/src/C-Sharp/ASTE.Resources/bin/Debug
+/src/C-Sharp/ASTE.Resources/obj/Debug

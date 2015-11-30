@@ -102,7 +102,7 @@ namespace ASTE.Processes.Mielenterveysseura.Controllers
                 LoggerModel lm = new LoggerModel()
                 {
                      message = string.Format("lokikirjakysymykset called from {0}","Lokikirja"),
-                     source = "Tonin megaboksi",
+                     source = "Mielenterveysseura Process",
                      eventTimestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm")
                 };
 

@@ -1,0 +1,24 @@
+LoggerModule has been created using Spring Boot. It contains embedded Tomcat server so it can be run standalone.
+
+Examples:
+
+java -jar logger-module-1.0-SNAPSHOT.jar
+-> Starts tomcat on default port 8080, loggerModule installed on root context path
+
+java -Dserver.port=1234 -jar logger-module-1.0-SNAPSHOT.jar
+-> Tomcat starts on port 1234
+
+java -Dserver.port=1234 -Dserver.contextPath=/modules/loggerModule -jar logger-module-1.0-SNAPSHOT.jar
+-> Tomcat starts on port 1234 and loggerModule is installed on /modules/loggerModule context path
+
+
+How to test (module api)?
+
+- Open browser on http://localhost:8080/1.0/loggerModule/ping
+- Open browser on http://localhost:8080/1.0/loggerModule/config
+
+How to test (actual functionality)?
+
+- use curl
+
+	 curl -X PUT 'http://localhost:8080/loggerModule/1.0/log' --data '{"source":"My test client","message":"Test log message","eventTimestamp":"2015-11-30 14:09"}' -H 'Content-Type: application/json'

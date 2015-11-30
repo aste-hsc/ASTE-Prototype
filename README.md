@@ -106,11 +106,3 @@ Step 8: Navigate to the demo web application by adding /lapset-puheeksi/lokikirj
 
 
 
-
-
-
-    
-
-
-
-  

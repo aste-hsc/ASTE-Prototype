@@ -8,7 +8,7 @@
     <li role="presentation"><a href="#">Lastenpsykiatri</a></li>
     <li role="presentation"><a href="#">Lastensuojelu</a></li>
 </ul>
-<div class="well marginTop20 marginBottom40" style="background-color: #FFF8CA; background-image: none; border-color: #E0C900;">Täytä alla olevat kysymykset ja paina 'Tallenna'.</div>
+<div class="save-information well marginTop20 marginBottom40" style="background-color: #FFF8CA; background-image: none; border-color: #E0C900;">Täytä alla olevat kysymykset ja paina 'Tallenna'.</div>
 
     <form class="ajaxform">
         <div id="ajax_content">
@@ -88,6 +88,7 @@
                                     success: function (data) {
                                         $("#ajax_content").empty();
                                         obj = JSON.parse(data);
+                                        $(".save-information").hide();
                                         $("#ajax_content").append("<div class='well marginTop20 marginBottom40' style='background-color: #FFF8CA; background-image: none; border-color: #E0C900;'>Tallentamasi vastaukset:</div>");
                                         $(obj.answers).each(function () {
                                             $("#ajax_content").append("<div class='row' style='padding-top:20px;padding-bottom:20px;'>");

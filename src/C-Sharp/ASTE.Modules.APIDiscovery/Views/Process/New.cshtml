@@ -1,0 +1,35 @@
+﻿@using ASTE.Modules.APIDiscovery.Models;
+@model newModelOrProcess
+@{
+    ViewBag.Title = "New Process";
+}
+<div class="row">
+    
+        <h2>New Process</h2>
+        @using (Html.BeginForm("Add", "Process", FormMethod.Get))
+        {
+            <p>
+                example:
+                <br/>
+                API Base url: http://localhost:51360
+                <br />
+                version: 1.0
+            </p>
+
+            @Html.ValidationSummary()
+            <table cellpadding="5">
+
+                <tr>
+                    <td>@Html.LabelFor(x => Model.url)</td>
+                    <td>@Html.EditorFor(x => Model.url)</td>
+                </tr>
+              
+                <tr>
+                    <td>@Html.LabelFor(x => Model.version)</td>
+                    <td>@Html.EditorFor(x => Model.version)</td>
+                </tr>
+               
+            </table>
+            <input class="btn btn-default" type="submit" value="Add" />
+        }
+</div>

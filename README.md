@@ -94,8 +94,10 @@ Change the public rest api url (ASTE.Public.REST) in the following positions, to
 
 ASTE.Demos.Mielenterveysseura/Views/Home/Index.cshtml, in line number 38
     url: "http://localhost:[Your port]/public/1.0/Get",
+    
 ASTE.Demos.Mielenterveysseura/Views/Home/Index.cshtml, in line number 73
     url: "http://localhost:[Your port]/public/1.0/Post",
+    
 ASTE.Demos.Mielenterveysseura/Views/Home/Index.cshtml, in line number 87
     url: "http://localhost:[Your port]/public/1.0/Get",
     

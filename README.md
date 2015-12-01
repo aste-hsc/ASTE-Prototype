@@ -29,7 +29,7 @@ Installation:
     	
     	Change the API Discovery port to the following projects web.config:
     	
-    		ASTE.Public.Rest
+    	ASTE.Public.Rest
 		ASTE.Modules.FormModule
 		ASTE.Processes.Mielenterveysseura
 	

@@ -26,6 +26,18 @@ Installation:
 
         example:
     	<add name="FormModuleContext" connectionString="Server=127.0.0.1;Port=5432;User Id=postgres;Password=asteuser;Database=ASTE" providerName="Npgsql" />
+    	
+    	Change the API Discovery port to the following projects web.config:
+    	
+	ASTE.Public.Rest
+	ASTE.Modules.FormModule
+	ASTE.Processes.Mielenterveysseura
+	
+	<appSettings>
+    	<!-- ASTE API Discovery url -->
+    	<add key="API_Discovery_Url" value="http://localhost:[YOUR PORT]" />
+  	</appSettings>
+
     
 	Step 5: Host the following C# projects to IIS:
 

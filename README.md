@@ -29,14 +29,14 @@ Installation:
     	
     	Change the API Discovery port to the following projects web.config:
     	
-	ASTE.Public.Rest
-	ASTE.Modules.FormModule
-	ASTE.Processes.Mielenterveysseura
+    		ASTE.Public.Rest
+		ASTE.Modules.FormModule
+		ASTE.Processes.Mielenterveysseura
 	
-	<appSettings>
-    	<!-- ASTE API Discovery url -->
-    	<add key="API_Discovery_Url" value="http://localhost:[YOUR PORT]" />
-  	</appSettings>
+		<appSettings>
+    		<!-- ASTE API Discovery url -->
+    		<add key="API_Discovery_Url" value="http://localhost:[YOUR PORT]" />
+  		</appSettings>
 
     
 	Step 5: Host the following C# projects to IIS:

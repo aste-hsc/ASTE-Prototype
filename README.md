@@ -10,7 +10,7 @@ Prototype for ASTE -platform
 Instructions for setting up a development environment for the prototype.
 
 
-### Step 1: Install PostgreSQL (http://www.postgresql.org)
+### Step 1: Install [PostgreSQL](http://www.postgresql.org)
 
 
 

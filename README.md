@@ -70,7 +70,7 @@ Prototype for ASTE -platform
 		
 		3.1 In the API Discovery Root, select modules and add a new module
 		  
-		  url: http://localhost:[The Port you assigned in IIS]/FormModule
+		  url: http://localhost:[The Port you assigned in IIS]/api
 		  version: "1.0"
 		  
 		3.2 Activate module through Edit
@@ -78,7 +78,7 @@ Prototype for ASTE -platform
 	4. Installing ASTE.Processes.Mielenterveysseura
 		4.1 In the API Discovery Root, select processes and add a new process
 		  
-		  url: http://localhost:[The Port you assigned in IIS]/Mielenterveysseura
+		  url: http://localhost:[The Port you assigned in IIS]/api
 		  version: "1.0"
 		  
 		4.2 Activate process through Edit
@@ -106,13 +106,13 @@ Prototype for ASTE -platform
 		4. Change the public rest api url (ASTE.Public.REST) in the following positions, to the one you installed it on IIS
 		
 		ASTE.Demos.Mielenterveysseura/Views/Home/Index.cshtml, in line number 38
-		    url: "http://localhost:[Your port]/public/1.0/Get",
+		    url: "http://localhost:[Your port]/api/1.0/process",
 		    
 		ASTE.Demos.Mielenterveysseura/Views/Home/Index.cshtml, in line number 73
-		    url: "http://localhost:[Your port]/public/1.0/Post",
+		    url: "http://localhost:[Your port]/api/1.0/process",
 		    
 		ASTE.Demos.Mielenterveysseura/Views/Home/Index.cshtml, in line number 87
-		    url: "http://localhost:[Your port]/public/1.0/Get",
+		    url: "http://localhost:[Your port]/api/1.0/process",
     
 ####Step 9: Navigate to the demo web application by adding /lapset-puheeksi/lokikirja to your ASTE.Demos.Mielenterveysseura site on iis:
 	

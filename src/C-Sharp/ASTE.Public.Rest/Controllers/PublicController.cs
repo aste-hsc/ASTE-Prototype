@@ -16,7 +16,7 @@ namespace ASTE.Public.Rest.Controllers
     /// <summary>
     /// Public REST API
     /// </summary>
-    [RoutePrefix("public/1.0")]
+    [RoutePrefix("api/1.0")]
     public class PublicController : ApiController
     {
         /// <summary>
@@ -25,8 +25,8 @@ namespace ASTE.Public.Rest.Controllers
         /// <param name="json">Incoming Json data</param>
         /// <returns>JSON String</returns>
         [HttpGet]
-        [Route("Get")]
-        public async Task<string> Get(string json)
+        [Route("process")]
+        public async Task<string> Process(string json)
         {
             //Serialize given json to model
             dynamic model = JsonConvert.DeserializeObject(json.ToString());
@@ -91,7 +91,7 @@ namespace ASTE.Public.Rest.Controllers
                     //Get process url from API Data
                     var url = data.api_url;
                     //Call Process
-                    var response = await rh.CallProcess(data.name,version, method, model["parameters"], url, api_key.Value.FirstOrDefault().ToString());
+                    var response = await rh.CallGetProcess(data.name,version, method, model["parameters"], url, api_key.Value.FirstOrDefault().ToString());
                     //Return Data to APP
                     return response;
 
@@ -112,8 +112,8 @@ namespace ASTE.Public.Rest.Controllers
         /// <param name="json">Incoming Json data</param>
         /// <returns>JSON String</returns>
         [HttpPost]
-        [Route("Post")]
-        public async Task<string> Post(JObject json)
+        [Route("process")]
+        public async Task<string> Process(JObject json)
         {
             //Serialize given json to model
 
@@ -179,7 +179,7 @@ namespace ASTE.Public.Rest.Controllers
                     //Get process url from API Data
                     var url = data.api_url;
                     //Call Process
-                    var response = await rh.CallProcess(data.name, version, method, model.parameters, url, api_key.Value.FirstOrDefault().ToString());
+                    var response = await rh.CallPostProcess(data.name, version, method, model.parameters, url, api_key.Value.FirstOrDefault().ToString());
                     //Return Data to APP
                     return response;
                 }

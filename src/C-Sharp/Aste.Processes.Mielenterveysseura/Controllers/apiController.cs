@@ -19,7 +19,7 @@ namespace ASTE.Processes.Mielenterveysseura.Controllers
     /// <summary>
     /// API Controller for the Demo process
     /// </summary>
-    [RoutePrefix("Mielenterveysseura/1.0")]
+    [RoutePrefix("api/1.0")]
     public class apiController : ApiController
     {
         private string api_key { get; set; }
@@ -62,18 +62,13 @@ namespace ASTE.Processes.Mielenterveysseura.Controllers
             model.methods = new List<MethodModel>();
             model.methods.Add(new MethodModel()
             {
-                method = "lokikirjaKysymykset",
+                method = "lokikirjakysymykset",
                 @params = ""
             });
             model.methods.Add(new MethodModel()
             {
-                method = "tallennaLokikirja",
+                method = "lokikirja",
                 @params = "FormAnswer objects in json format: "
-            });
-            model.methods.Add(new MethodModel()
-            {
-                method = "haeLokikirja",
-                @params = "int form_id"
             });
 
             var json = JsonConvert.SerializeObject(model);
@@ -85,7 +80,7 @@ namespace ASTE.Processes.Mielenterveysseura.Controllers
         /// </summary>
         /// <returns>Questions from the demo form through FormModule</returns>
         [HttpGet]
-        [Route("lokikirjaKysymykset")]
+        [Route("lokikirjakysymykset")]
         public async Task<string> LokikirjaKysymykset()
         {
             check_api_key();
@@ -111,7 +106,7 @@ namespace ASTE.Processes.Mielenterveysseura.Controllers
             }
 
             //Get Module info from API Discovery
-            var data = await rh.GetConfig("FormModule", "getQuestions", api_key, "1.0");
+            var data = await rh.GetConfig("FormModule", "questions", api_key, "1.0");
 
             if (data == null)
             {
@@ -126,7 +121,7 @@ namespace ASTE.Processes.Mielenterveysseura.Controllers
                 var url = data.api_url;
 
                 //Call Process
-                var response = await rh.CallModule(data.name, "1.0", "GetQuestions","id=1", url);
+                var response = await rh.GetQuestions(data.name, "1.0", "questions","1", url);
                 //Return Data to APP
                 return response;
 
@@ -138,9 +133,8 @@ namespace ASTE.Processes.Mielenterveysseura.Controllers
         /// </summary>
         /// <param name="json">Answers in json format</param>
         /// <returns>id of the saved form, through FormModule</returns>
-        [HttpGet]
         [HttpPost]
-        [Route("tallennaLokikirja")]
+        [Route("lokikirja")]
         public async Task<string> TallennaLokikirja(JObject json)
         {
             var json_array = json.GetValue("json");
@@ -186,7 +180,7 @@ namespace ASTE.Processes.Mielenterveysseura.Controllers
             RestHelper<object> rh = new RestHelper<object>();
 
             //Get Module info from API Discovery
-            var data = await rh.GetConfig("FormModule", "saveForm", api_key, "1.0");
+            var data = await rh.GetConfig("FormModule", "form", api_key, "1.0");
 
             if (data == null)
             {
@@ -201,7 +195,7 @@ namespace ASTE.Processes.Mielenterveysseura.Controllers
                 var url = data.api_url;
 
                 //Call Process
-                var response = await rh.SaveForm(data.name, "1.0", "saveForm", answers, url);
+                var response = await rh.SaveForm(data.name, "1.0", "form", answers, url);
                 return response;
             }
 
@@ -214,18 +208,16 @@ namespace ASTE.Processes.Mielenterveysseura.Controllers
         /// <param name="json">form id in json</param>
         /// <returns>Form data in json format through FormModule</returns>
         [HttpGet]
-        [HttpPost]
-        [Route("haeLokikirja")]
-        public async Task<string> HaeLokikirja(JObject json)
+        [Route("lokikirja/{id}")]
+        public async Task<string> Lokikirja(int id)
         {
-            var form_value= json.GetValue("json");
             check_api_key();
 
             //Create Resthelper
             RestHelper<object> rh = new RestHelper<object>();
 
             //Get Module info from API Discovery
-            var data = await rh.GetConfig("FormModule", "getForm", api_key, "1.0");
+            var data = await rh.GetConfig("FormModule", "form", api_key, "1.0");
 
             if (data == null)
             {
@@ -240,8 +232,7 @@ namespace ASTE.Processes.Mielenterveysseura.Controllers
                 var url = data.api_url;
 
                 //Call Process
-                var id = int.Parse(form_value.Last.FirstOrDefault().ToString());
-                var response = await rh.GetForm(data.name, "1.0", "getForm", id, url);
+                var response = await rh.GetForm(data.name, "1.0", "form", id, url);
                 return response;
             }
 

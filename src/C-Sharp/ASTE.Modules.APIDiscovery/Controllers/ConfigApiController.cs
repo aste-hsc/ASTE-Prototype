@@ -14,7 +14,7 @@ using System.Web.Http;
 
 namespace ASTE.Modules.APIDiscovery.Controllers
 {
-    [RoutePrefix("ConfigApi/1.0")]
+    [RoutePrefix("api/1.0")]
     public class ConfigApiController : ApiController
     {
         private APIDiscoveryContext ctx = new APIDiscoveryContext();
@@ -27,7 +27,8 @@ namespace ASTE.Modules.APIDiscovery.Controllers
         /// <param name="version">Version of the module</param>
         /// <param name="source">Where the call is coming from</param>
         /// <returns></returns>
-        [Route("getActiveModules")]
+        [HttpGet]
+        [Route("activemodule")]
         public async Task<ModuleInfo> GetActiveModules (string module, string method, string version, string source)
         {
             RestHelper rs = new RestHelper();
@@ -147,7 +148,7 @@ namespace ASTE.Modules.APIDiscovery.Controllers
         /// <param name="version">Version of the process</param>
         /// <param name="source">Where the call is coming from</param>
         /// <returns></returns>
-        [Route("getActiveProcesses")]
+        [Route("activeprocess")]
         public async Task<ModuleInfo> getActiveProcess(string process, string method, string version, string source)
         {
             RestHelper rs = new RestHelper();

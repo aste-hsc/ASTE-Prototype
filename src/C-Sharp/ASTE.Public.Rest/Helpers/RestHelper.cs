@@ -29,7 +29,7 @@ namespace ASTE.Public.Rest.Helpers
         /// <param name="parameters">Parameters for the process method</param>
         /// <param name="api_url">URL where the process is listening</param>
         /// <returns></returns>
-        public async Task<string> CallProcess(string process, string version, string method, dynamic parameters, string api_url, string api_key)
+        public async Task<string> CallPostProcess(string process, string version, string method, dynamic parameters, string api_url, string api_key)
         {
             using (var client = new HttpClient())
             {
@@ -43,7 +43,68 @@ namespace ASTE.Public.Rest.Helpers
                 {
                     string json_data = Newtonsoft.Json.JsonConvert.SerializeObject(parameters);
                     var json = "{ \"json\" : " + json_data + " }";
-                    HttpResponseMessage response = await client.PostAsync(callUrl, new StringContent(json, Encoding.UTF8, "application/json"));
+                    HttpResponseMessage response = await client.PostAsync(callUrl, new StringContent(json,Encoding.UTF8,"Application/Json"));
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var data = await response.Content.ReadAsAsync<string>();
+                        return data;
+
+                    }
+                    else
+                    {
+                        throw new HttpResponseException(response);
+                    }
+                }
+                {
+                    throw new HttpException("Cannot post without parameters!");
+                }
+
+
+            }
+        }
+
+        /// <summary>
+        /// Calls a given process
+        /// </summary>
+        /// <param name="process">Name of the process</param>
+        /// <param name="method">Name of the method</param>
+        /// <param name="parameters">Parameters for the process method</param>
+        /// <param name="api_url">URL where the process is listening</param>
+        /// <returns></returns>
+        public async Task<string> CallGetProcess(string process, string version, string method, dynamic parameters, string api_url, string api_key)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(api_url + "/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                client.DefaultRequestHeaders.Add("api_key", api_key);
+
+                var callUrl = version + "/" + method;
+                if (parameters != null)
+                {
+
+                        foreach (var c in parameters)
+                        {
+                            var propertyValue = c.Value;
+                            if (c.Name == "id")
+                            {
+                                callUrl += "/" + propertyValue.Value.ToString();
+                            }
+
+                        }
+                        callUrl += "?";
+                        foreach (var c in parameters)
+                        {
+                        var propertyValue = c.Value;
+                            if (c.Name != "id")
+                            {
+                                callUrl += c.NAme + "=" + propertyValue.Value.ToString() + "&";
+                            }
+
+                        }
+                    
+                    HttpResponseMessage response = await client.GetAsync(callUrl);
                     if (response.IsSuccessStatusCode)
                     {
                         var data = await response.Content.ReadAsAsync<string>();

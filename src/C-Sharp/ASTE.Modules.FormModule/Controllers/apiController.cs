@@ -21,7 +21,7 @@ namespace ASTE.Modules.FormModule.Controllers
     /// <summary>
     /// API Controller for FormModule version 1.0
     /// </summary>
-    [RoutePrefix("FormModule/1.0")]
+    [RoutePrefix("api/1.0")]
     public class apiController : ApiController
     {
         /// <summary>
@@ -62,19 +62,15 @@ namespace ASTE.Modules.FormModule.Controllers
             model.methods = new List<MethodModel>();
             model.methods.Add(new MethodModel()
             {
-                method = "getQuestions",
-                @params = "int id"
+                method = "questions",
+                @params = ""
             });
             model.methods.Add(new MethodModel()
             {
-                method = "saveForm",
-                @params = "List<FormAnswer> answers"
+                method = "form",
+                @params = ""
             });
-            model.methods.Add(new MethodModel()
-            {
-                method = "getForm",
-                @params = "int id"
-            });
+
 
             var json = JsonConvert.SerializeObject(model);
             return json;
@@ -85,8 +81,9 @@ namespace ASTE.Modules.FormModule.Controllers
         /// </summary>
         /// <param name="id">form_metadata_id id</param>
         /// <returns>Questions in json format</returns>
-        [Route("getQuestions")]
-        public string GetQuestions(int id)
+        [Route("questions/{id}")]
+        [HttpGet]
+        public string Questions(int id)
         {
             FormModuleContext ctx = new FormModuleContext();
             List<db.Entities.FormQuestionMetadata> questions = ctx.form_questions.Where(x => x.form_metadata_id == id).ToList();
@@ -105,8 +102,8 @@ namespace ASTE.Modules.FormModule.Controllers
         /// <param name="answers">List of FormAnswers to be saved</param>
         /// <returns>id of the saved form data</returns>
         [HttpPost]
-        [Route("saveForm")]
-        public string SaveForm(List<FormAnswer> answers)
+        [Route("form")]
+        public string Form(List<FormAnswer> answers)
         {
 
             FormModuleContext ctx = new FormModuleContext();
@@ -135,8 +132,8 @@ namespace ASTE.Modules.FormModule.Controllers
         /// <param name="id">form id to fetch</param>
         /// <returns>Form data in json</returns>
         [HttpGet]
-        [Route("getForm")]
-        public string GetForm(int id)
+        [Route("form/{id}")]
+        public string Form(int id)
         {
  
             FormModuleContext ctx = new FormModuleContext();

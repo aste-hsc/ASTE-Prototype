@@ -1,4 +1,5 @@
 ﻿using ASTE.Modules.APIDiscovery.db.Entities;
+using ASTE.Resources;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -63,10 +64,28 @@ namespace ASTE.Modules.APIDiscovery.db.Context
             {
                 created = DateTime.Now,
                 modified = DateTime.Now,
-                name = "GetActiveModules",
+                name = "activemodule",
+            });
+            module.methods.Add(new ModuleMethod()
+            {
+                created = DateTime.Now,
+                modified = DateTime.Now,
+                name = "activeprocess",
             });
             context.modules.Add(module);
+
+            var client = new Client();
+            client.api_key = Constants.ASTE_APIDISCOVERY_INTERNAL_USE_API_KEY;
+            client.created = DateTime.Now;
+            client.client_name = "Internal module or process";
+            client.client_ip = "127.0.0.1";
+            client.name = "Key for internal use";
+          
+            context.clients.Add(client);
+
             context.SaveChanges();
+
+
         }
     }
 

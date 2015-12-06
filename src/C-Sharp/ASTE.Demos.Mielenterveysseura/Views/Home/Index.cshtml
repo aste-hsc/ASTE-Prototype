@@ -28,14 +28,14 @@
         $(".splash").show();
             var json_data = {
                 "process" : "Mielenterveysseura",
-                "method"  : "lokikirjaKysymykset",
+                "method"  : "lokikirjakysymykset",
                 "version" : "1.0"
             };
 
             $.ajax({
                 dataType: "json",
                 data: { "json": JSON.stringify(json_data) },
-                url: "http://localhost:53060/public/1.0/Get",
+                url: "http://localhost:53060/api/1.0/process",
                 success: function (data) {
 
                     obj = JSON.parse(data);
@@ -60,7 +60,7 @@
                         var form_data = $(".ajaxform").serializeArray();
                         var json_send = { 
                             "process": "Mielenterveysseura",
-                            "method": "tallennaLokikirja",
+                            "method": "lokikirja",
                             "version": "1.0",
                             "parameters": form_data
                         };
@@ -70,21 +70,22 @@
                             contentType: 'application/json',
                             type: 'POST',
                             data: send_data,
-                            url: "http://localhost:53060/public/1.0/Post",
+                            url: "http://localhost:53060/api/1.0/process",
                             success: function (data) {
                                 obj = JSON.parse(data);
                                 var id = obj.form_id;
                                 var json_get = { 
                                     "process": "Mielenterveysseura",
-                                    "method": "haeLokikirja",
+                                    "method": "lokikirja",
                                     "version": "1.0",
-                                    "parameters": { "form_id" : id  }
+                                    "parameters": { "id" : id  }
                                 };
                                 
                                 $.ajax({
                                     dataType: "json",
                                     data: { "json": JSON.stringify(json_get) },
-                                    url: "http://localhost:53060/public/1.0/Get",
+                                    type: "GET",
+                                    url: "http://localhost:53060/api/1.0/process",
                                     success: function (data) {
                                         $("#ajax_content").empty();
                                         obj = JSON.parse(data);

@@ -67,14 +67,12 @@ namespace ASTE.Processes.Mielenterveysseura.Helpers
         /// <param name="parameters">Parameters for the process method</param>
         /// <param name="api_url">URL where the process is listening</param>
         /// <returns>json data</returns>
-        public async Task<string> CallModule(string module, string version, string method, string parameters, string api_url)
+        public async Task<string> GetQuestions(string module, string version, string method, string id, string api_url)
         {
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(api_url + "/");
-
-                var callUrl = version + "/" + method + "?";
-                callUrl += parameters;
+                var callUrl = version + "/" + method + "/" + id;
                 HttpResponseMessage response = await client.GetAsync(callUrl);
                 if (response.IsSuccessStatusCode)
                 {
@@ -139,7 +137,7 @@ namespace ASTE.Processes.Mielenterveysseura.Helpers
             {
                 client.BaseAddress = new Uri(api_url + "/");
 
-                var callUrl =  version + "/" + method + "?id=" + id.ToString();
+                var callUrl =  version + "/" + method + "/" + id.ToString();
                 HttpResponseMessage response = await client.GetAsync(callUrl);
                 if (response.IsSuccessStatusCode)
                 {
